@@ -51,7 +51,7 @@ scidownload-authorized-literature/
    ├─ multi-publisher.md
    ├─ implementation-notes.md
    └─ release-maintenance.md
-
+```
 其中：
 
 SKILL.md：Agent 的主要操作规则
