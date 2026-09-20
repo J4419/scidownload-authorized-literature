@@ -51,3 +51,60 @@ scidownload-authorized-literature/
    ├─ multi-publisher.md
    ├─ implementation-notes.md
    └─ release-maintenance.md
+
+其中：
+
+SKILL.md：Agent 的主要操作规则
+scripts/：SCIDownload 实际执行脚本
+references/：故障排查、多出版商、断点续传和维护说明
+环境要求
+Python 3.10 或更高版本
+Chrome、Edge 或 Chromium
+对目标文献具有合法访问权限
+
+脚本主要使用 Python 标准库，不要求额外安装复杂依赖。
+
+基本工作流程
+
+Agent 通常会：
+
+检查输入中是否已经包含 DOI
+如果只有标题，先使用 FindDOI.py 查询 DOI
+对少量文献进行试跑
+确认访问权限和 PDF 是否能够正常打开
+再进行较大的批量任务
+根据 manifest.jsonl 和磁盘文件进行断点续传
+
+对于登录、网络、出版商兼容性或下载失败等情况，会按 references/ 中的说明进一步诊断。
+
+隐私与安全
+
+浏览器 Profile 可能包含：
+
+Cookie
+机构登录状态
+会话数据
+
+因此不要上传或公开：
+
+browser-profile
+Cookie
+登录数据库
+run.log
+manifest.jsonl
+包含个人研究兴趣的 DOI 清单
+带有机构信息或本地路径的调试截图
+
+CDP 调试接口仅应绑定到本机 127.0.0.1。
+
+相关项目
+
+SCIDownload 主项目：
+
+https://github.com/J4419/SCIDownload
+
+License
+
+请参照 SCIDownload 主项目及本仓库所采用的许可证。
+
+我建议就用这版，不要把 README 写得太长。真正给 Agent 执行的细节已经在 `SKILL.md` 和 `references/` 里，GitHub 首页主要是让人**一眼看懂这是干什么的、有什么边界、怎么组成**。:contentReference[oaicite:1]{index=1}
